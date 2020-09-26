@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Jobs.Models.Category>
+
+<!-- ko with: home -->
+<div class="jumbotron alert alert-info">
+    <h1>Welcome Visitor</h1>
+    <p class="lead">This web site is for persons which they need to have a jobs.</p>
+    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+@foreach (var item in Model)
+{
+<div class="panel panel-info ">
+    <div class="panel-heading"><h1>@Html.DisplayFor(modelItem => item.CategoryName)</h1></div>
+
+    <div class="row panel-body">
+        <h3>@Html.DisplayFor(modelItem => item.CategoryDescription)</h3>
+
+        @foreach (var subItem in item.jobs)
+        {
+
+
+            <div class="col-md-3 thumbnail" style="margin-left:20px; margin-bottom:20px; min-height:450px">
+                <img src="~/Uploads/@subItem.JobImage" />
+                <h3>@Html.DisplayFor(modelItem => subItem.JobTitle)</h3>
+                <h3>@Html.DisplayFor(modelItem => subItem.JobContent)</h3>
+                @Html.ActionLink("Details", "Details", new { JobId = subItem.Id }, new { @class = "btn btn-primary" })
+            </div>
+
+        }
+    </div>
+</div>
+
+}
+<!-- /ko -->
